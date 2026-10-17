@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Caixa Fácil — gestão financeira simples, visual e segura." />
+    <meta name="csrf-token" content="" />
+    <link rel="icon" href="/static/imagens/icone.svg?v=4683d3d604b0" type="image/svg+xml" />
+    <title>Lançamentos · Caixa Fácil</title>
+    <link rel="stylesheet" href="/static/css/style.css?v=ce99be3e04a1" />
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/static/css/material.css?v=0b37de734363" />
+    <link rel="stylesheet" href="/static/css/transaction.css?v=97b8ea1ed61d" />
+    <link rel="stylesheet" href="/static/css/charts.css?v=5cc5262c3f77" />
+    <link rel="stylesheet" href="/static/css/page-refinements.css?v=dae6a6ec8700" />
+    <link rel="stylesheet" href="/static/css/material-unified.css?v=fdef781702ba" />
+  </head>
+  <body class="" data-page="lancamentos" data-demo="true">
+    <a class="skip-link" href="#mainContent">Ir para o conteúdo principal</a>
+    
+<div class="app">
+  <aside class="sidebar" id="sidebar" aria-label="Navegação principal">
+  <div class="sidebar-header">
+    <div class="brand-icon" aria-hidden="true"><img src="/static/imagens/andes-mark.svg?v=4683d3d604b0" alt="" /></div>
+    <div class="brand-copy"><h1>Fuji Finance</h1><span>Controle financeiro</span></div>
+  </div>
+
+  <nav class="sidebar-nav">
+    <span class="nav-label">Principal</span>
+    <a class="nav-link " href="/" ><i data-lucide="home" aria-hidden="true"></i><span>Início</span></a>
+    <a class="nav-link active" href="/lancamentos.html" aria-current="page"><i data-lucide="circle-dollar-sign" aria-hidden="true"></i><span>Lançamentos</span></a>
+
+    <span class="nav-label nav-label-settings">Sistema</span>
+    <a class="nav-link " href="/notificacoes.html" ><i data-lucide="graduation-cap" aria-hidden="true"></i><span>Tutorial</span></a>
+    <a class="nav-link " href="/configuracoes.html" ><i data-lucide="settings" aria-hidden="true"></i><span>Configurações</span></a>
+    
+  </nav>
+
+  <div class="profile">
+    <div class="avatar" aria-hidden="true"><i data-lucide="user"></i></div>
+    <div class="profile-info"><strong>Meu caixa</strong><span>Dados locais</span></div>
+    <button class="icon-button" type="button" aria-label="Sair" title="Sair" data-logout><i data-lucide="log-out" aria-hidden="true"></i></button>
+  </div>
+</aside>
+<button class="sidebar-overlay" type="button" aria-label="Fechar menu" aria-hidden="true" tabindex="-1"></button>
+  <main class="content" id="mainContent">
+    
+    
+    
+    <header class="topbar">
+      <button class="icon-button sidebar-close" id="sidebarClose" type="button" aria-label="Abrir ou fechar menu" aria-controls="sidebar"><i data-lucide="panel-left" aria-hidden="true"></i></button>
+      <div class="topbar-left"><h1>Lançamentos</h1><p>Entradas e saídas do Banco Geral</p></div>
+      <div class="topbar-actions"><button class="button button-primary" type="button" data-open-transaction><i data-lucide="circle-plus" aria-hidden="true"></i><span>Novo lançamento</span></button></div>
+    </header>
+    
+<div class="page-shell">
+  <section class="toolbar transactions-toolbar" aria-label="Filtros de lançamentos"><div class="filter-group">
+    <div class="filter-select"><i data-lucide="calendar" aria-hidden="true"></i><span class="sr-only">Período</span><select data-filter="period" data-default-period="all" aria-label="Filtrar por período"><option value="all">Todo o período</option></select></div>
+    <div class="filter-select"><i data-lucide="layout-grid" aria-hidden="true"></i><span class="sr-only">Categoria</span><select data-filter="category_id" aria-label="Filtrar por categoria"><option value="all">Todas as categorias</option></select></div>
+  </div><label class="search-wrapper"><i data-lucide="search" aria-hidden="true"></i><span class="sr-only">Buscar lançamento</span><input id="searchInput" data-filter="search" type="search" placeholder="Buscar lançamento..." autocomplete="off" /><kbd>Alt+K</kbd></label></section>
+  <section class="table-card" aria-labelledby="transactionsTableTitle"><div class="card-header table-card-header"><div><span class="card-eyebrow">Movimentações</span><h2 id="transactionsTableTitle">Lançamentos registrados</h2></div><span class="stat-badge neutral" id="transactionsCount">Carregando…</span></div><div class="table-wrap"><table><thead><tr><th>Data</th><th>Descrição</th><th>Origem</th><th>Entrada</th><th>Saída</th><th>Saldo</th><th class="transaction-actions-heading" scope="col">Ações</th></tr></thead><tbody id="transactionsTableBody"><tr><td colspan="7"><div class="table-empty"><span>Carregando lançamentos…</span></div></td></tr></tbody></table></div><div class="table-footer"><span>O saldo acumulado considera o saldo inicial do Banco Geral.</span><nav class="pagination" id="transactionsPagination" aria-label="Paginação"></nav></div></section>
+</div>
+
+  </main>
+</div>
+<div class="modal-backdrop" id="transactionModal" aria-hidden="true">
+  <section class="modal transaction-modal" role="dialog" aria-modal="true" aria-labelledby="transactionModalTitle">
+    <header class="modal-header transaction-wizard-header">
+      <div>
+        <p class="transaction-step-eyebrow" id="transactionStepLabel">Etapa 1</p>
+        <h2 class="modal-title" id="transactionModalTitle">Novo lançamento</h2>
+      </div>
+      <button class="icon-button" type="button" data-close-modal aria-label="Fechar"><i data-lucide="x" aria-hidden="true"></i></button>
+    </header>
+
+    <form id="transactionForm" class="transaction-form" autocomplete="off" novalidate>
+      <ol class="transaction-progress" aria-label="Etapas do novo lançamento">
+        <li class="is-active" data-step-indicator="1"><span>1</span><small>Dados iniciais</small></li>
+        <li data-step-indicator="2"><span>2</span><small>Detalhes</small></li>
+        <li data-step-indicator="3"><span>3</span><small>Confirmar</small></li>
+      </ol>
+
+      <div class="modal-body transaction-body">
+        <section class="transaction-step" data-transaction-step="type" aria-labelledby="txStepOneTitle">
+          <div class="transaction-step-heading">
+            <h3 id="txStepOneTitle">Selecione o fluxo</h3>
+            <p>Escolha entrada ou saída.</p>
+          </div>
+          <div class="transaction-fields">
+            <div class="field transaction-field-step">
+              <label for="txFlux">Fluxo <span class="required" aria-hidden="true">*</span></label>
+              <select class="select" id="txFlux" name="flow" required>
+                <option value="">Selecione o fluxo</option>
+                <option value="entrada">Entrada</option>
+                <option value="saida">Saída</option>
+              </select>
+            </div>
+          </div>
+        </section>
+
+        <section class="transaction-step" data-transaction-step="data" aria-labelledby="txStepTwoTitle" hidden>
+          <div class="transaction-step-heading">
+            <h3 id="txStepTwoTitle">Dados do lançamento</h3>
+            <p id="txStepTwoDescription">Preencha o campo para continuar.</p>
+          </div>
+          <div class="transaction-fields">
+            <div class="field transaction-field-step" id="txCategoryField" data-field-step="category" hidden><label for="txCategory" id="txCategoryLabel">Categoria <span class="required" aria-hidden="true">*</span></label><select class="select" id="txCategory" required><option value="">Selecione</option></select></div>
+            <div class="field transaction-field-step" id="txOriginBankField" data-field-step="origin-bank" hidden><label for="txOriginBank">Banco de origem <span class="required" aria-hidden="true">*</span></label><select class="select" id="txOriginBank" disabled required><option value="">Selecione</option></select></div>
+            <div class="field transaction-field-step" id="txDestinationBankField" data-field-step="destination-bank" hidden><label for="txDestinationBank">Banco de destino <span class="required" aria-hidden="true">*</span></label><select class="select" id="txDestinationBank" disabled required><option value="">Selecione</option></select></div>
+            <div class="field transaction-field-step" data-field-step="date" hidden><label for="txDate">Data <span class="required" aria-hidden="true">*</span></label><input class="input" id="txDate" name="date" type="date" required /></div>
+            <div class="field transaction-field-step" data-field-step="amount" hidden><label for="txValue">Valor <span class="required" aria-hidden="true">*</span></label><div class="input-money"><span class="currency-symbol" aria-hidden="true">R$</span><input class="input" id="txValue" name="amount" type="text" inputmode="decimal" placeholder="0,00" aria-label="Valor em reais" data-money-input required /></div></div>
+            <div class="field transaction-field-step" data-field-step="description" hidden><label for="txDescription">Descrição <span class="required" aria-hidden="true">*</span></label><input class="input" id="txDescription" name="description" type="text" placeholder="Ex.: Pagamento do fornecedor" minlength="2" maxlength="80" aria-describedby="txDescriptionCount" required /><small class="description-count" id="txDescriptionCount">0 / 80</small></div>
+          </div>
+        </section>
+
+        <section class="transaction-step transaction-review" data-transaction-step="review" aria-labelledby="txStepThreeTitle" hidden>
+          <div class="transaction-step-heading">
+            <h3 id="txStepThreeTitle">Confirmar lançamento</h3>
+            <p>Confira os dados antes de concluir.</p>
+          </div>
+          <dl class="transaction-review-list">
+            <div><dt>Tipo</dt><dd data-review="flow">—</dd></div>
+            <div><dt>Data</dt><dd data-review="date">—</dd></div>
+            <div class="review-highlight"><dt>Valor</dt><dd data-review="amount">—</dd></div>
+            <div data-review-row="category"><dt>Categoria</dt><dd data-review="category">—</dd></div>
+            <div data-review-row="origin-bank"><dt>Banco de origem</dt><dd data-review="origin-bank">—</dd></div>
+            <div data-review-row="destination-bank"><dt>Banco de destino</dt><dd data-review="destination-bank">—</dd></div>
+            <div><dt>Descrição</dt><dd data-review="description">—</dd></div>
+          </dl>
+        </section>
+
+        <p class="form-feedback full" data-form-feedback role="status" aria-live="polite"></p>
+      </div>
+
+      <footer class="modal-footer transaction-wizard-footer">
+        <div class="transaction-step-actions">
+          <button class="button button-secondary" type="button" data-transaction-previous hidden><i data-lucide="arrow-left" aria-hidden="true"></i><span>Voltar</span></button>
+          <button class="button button-primary" type="button" data-transaction-next><span>Continuar</span><i data-lucide="arrow-right" aria-hidden="true"></i></button>
+          <button class="button button-primary" type="submit" data-submit-transaction hidden><i data-lucide="check" aria-hidden="true"></i><span>Confirmar</span></button>
+        </div>
+      </footer>
+    </form>
+  </section>
+</div>
+<dialog class="tutorial-dialog" id="tutorialDialog" aria-labelledby="tutorialTitle" aria-describedby="tutorialMessage" data-user="demo">
+  <header class="tutorial-header"><span id="tutorialProgress">Guia rápido</span><button class="icon-button" type="button" data-tour-close aria-label="Fechar tutorial"><i data-lucide="x" aria-hidden="true"></i></button></header>
+  <h2 id="tutorialTitle">Conheça o Caixa Fácil</h2>
+  <p id="tutorialMessage">Pratique em quatro passos. Os dados são só de demonstração e não alteram seu caixa.</p>
+  <footer class="tutorial-actions"><button class="button button-secondary" type="button" data-tour-back>Agora não</button><button class="button button-primary" type="button" data-tour-next>Começar</button></footer>
+  <ol hidden id="tutorialSteps">
+    <li data-url="/configuracoes.html" data-target="[data-settings-target='saldo-inicial']" data-action="settings:saldo-inicial" data-title="1. Saldo inicial">Demonstração: siga os campos em amarelo. Informe quanto você já tinha e toque em Salvar saldo inicial. Se estiver começando do zero, salve R$ 0,00.</li>
+    <li data-url="/configuracoes.html" data-target="[data-settings-target='categorias']" data-action="categoryCreateForm" data-title="2. Crie uma categoria">Escolha Entrada ou Saída, dê um nome à categoria e toque em Adicionar. Exemplo: Entrada → Salário.</li>
+    <li data-url="/configuracoes.html" data-target="[data-settings-target='objetivo']" data-action="settings:objetivo" data-title="3. Defina seu objetivo">Informe o valor total que deseja juntar e toque em Salvar objetivo.</li>
+    <li data-url="/lancamentos.html" data-target="[data-open-transaction]" data-action="transaction" data-title="4. Primeiro lançamento">Preencha data, tipo, valor, categoria e descrição. Confira e toque em Confirmar. Use o mesmo tipo da categoria que você criou.</li>
+  </ol>
+</dialog>
+
+    <script src="/static/js/demo-session.js?v=8f9b3f77e663"></script>
+    
+<script defer src="/static/vendor/echarts.min.js" integrity="sha384-C2iskrW/uPW46KzOjrvJIQo4YkV8lkD+QS0CrDN18IIPIpT/g2USu8bTP3nvmIAD" crossorigin="anonymous"></script>
+<script defer src="/static/vendor/jspdf.umd.min.js" integrity="sha384-qovJwSBbRDPP5cEjCp8S0UP66wrvnjaa60XMOGzTNanrThcrGfXfnZkvgY8N1KT3" crossorigin="anonymous"></script>
+<script defer src="/static/vendor/lucide.min.js" integrity="sha384-EUCkRDZz3ccamjWUTnQ+m2+FFO3t+HeuyOgvxU+FsQyXj4M4RxfkwPHtP95OPSmV" crossorigin="anonymous"></script>
+<script defer src="/static/js/dropdown.js?v=e83098111981"></script>
+<script defer src="/static/js/livro-caixa-pdf.js?v=3fb76394cbaa"></script>
+<script defer src="/static/js/report-export.js?v=67effc7020c4"></script>
+<script defer src="/static/js/goal.js?v=5e755e7a1534"></script>
+<script defer src="/static/js/data-service.js?v=fcf53a2686dc"></script>
+<script defer src="/static/js/app.js?v=3b5055667cbf"></script>
+<script defer src="/static/js/tutorial.js?v=d78cc82ebd1f"></script>
+
+
+  </body>
+</html>
