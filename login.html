@@ -9,6 +9,13 @@
     <title>Entrar · Fuji Finance</title>
     <link rel="stylesheet" href="/static/css/style.css?v=ce99be3e04a1" />
     
+<style>
+.login-shell-single { grid-template-columns: minmax(0, 1fr); }
+.login-shell-single .login-form-panel { min-height: calc(100dvh - 48px); }
+.login-shell-single .login-mobile-logo { display: flex; }
+@media (max-width: 600px) { .login-shell-single .login-form-panel { min-height: 100dvh; } }
+</style>
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
@@ -21,7 +28,7 @@
   <body class="login-page" data-page="login" data-demo="true">
     <a class="skip-link" href="#mainContent">Ir para o conteúdo principal</a>
     
-<main class="login-shell" id="mainContent"><section class="login-brand-panel" aria-label="Apresentação do Fuji Finance"><div class="login-brand-content"><div class="login-brand-mark"><img src="/static/imagens/andes-mark.svg?v=4683d3d604b0" alt="" /></div><span class="login-eyebrow">GESTÃO FINANCEIRA</span><h1>Controle seu caixa com clareza.</h1><p>Entradas, saídas, Banco Geral e categorias em uma experiência organizada.</p><div class="login-feature-list"><span><i data-lucide="chart-no-axes-combined"></i>Indicadores e gráficos</span><span><i data-lucide="file-text"></i>Relatórios PDF e CSV</span><span><i data-lucide="shield-check"></i>Demonstração com dados temporários</span></div></div></section><section class="login-form-panel"><form class="login-card" id="form-login" novalidate><div class="login-mobile-logo"><div class="brand-icon"><img src="/static/imagens/andes-mark.svg?v=4683d3d604b0" alt="" /></div><strong>Fuji Finance</strong></div><span class="login-eyebrow">BEM-VINDO</span><p class="login-copy">Experimente o Fuji Finance sem precisar de cadastro.</p><p class="form-feedback login-feedback" id="mensagem-login" role="alert"></p><button class="button button-primary login-submit" type="submit"><span>Acessar demonstração</span><i data-lucide="arrow-right"></i></button><p class="login-hint">Os dados são temporários e serão apagados ao recarregar a página.</p></form></section></main>
+<main class="login-shell login-shell-single" id="mainContent"><section class="login-form-panel"><form class="login-card" id="form-login" novalidate><div class="login-mobile-logo"><div class="brand-icon"><img src="/static/imagens/andes-mark.svg?v=4683d3d604b0" alt="" /></div><strong>Fuji Finance</strong></div><span class="login-eyebrow">BEM-VINDO</span><p class="login-copy">Experimente o Fuji Finance sem precisar de cadastro.</p><p class="form-feedback login-feedback" id="mensagem-login" role="alert"></p><button class="button button-primary login-submit" type="submit"><span>Acessar demonstração</span><i data-lucide="arrow-right"></i></button><p class="login-hint">Os dados são temporários e serão apagados ao recarregar a página.</p></form></section></main>
 
     <script src="/static/js/demo-session.js?v=8f9b3f77e663"></script>
     <script defer src="/static/vendor/lucide.min.js" integrity="sha384-EUCkRDZz3ccamjWUTnQ+m2+FFO3t+HeuyOgvxU+FsQyXj4M4RxfkwPHtP95OPSmV" crossorigin="anonymous"></script><script defer src="/static/js/login.js?v=f0918847712c"></script>
